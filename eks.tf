@@ -1,8 +1,7 @@
 
-
 provider "aws" {
 
-  region = "us-east-1"
+  region = "ap-south-1"
 
 }
 
@@ -82,14 +81,14 @@ module "eks" {
 
   cluster_version = "1.22"
 
-  subnets         = module.vpc.public_subnets
+  subnet_ids      = module.vpc.public_subnets
 
   vpc_id          = module.vpc.vpc_id
 
 
-  write_kubeconfig   = true
+ # write_kubeconfig   = true
 
-  config_output_path = "./"
+ # config_output_path = "./"
 
 }
 
@@ -147,7 +146,6 @@ provider "kubernetes" {
 
    token                  = data.aws_eks_cluster_auth.cluster.token
 
-    load_config_file       = false
+   # load_config_file       = false
 
 }
-
