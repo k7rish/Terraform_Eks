@@ -1,0 +1,14 @@
+---
+
+- name: Deploy to K8s
+  hosts: localhost
+  become: true
+
+  tasks:
+  - name: Deploy pod Service
+    shell: |
+      aws eks update-kubeconfig --name eks-cluster --region ap-south-1
+      #kubectl delete pod mywebsite-pod
+      #kubectl delete svc mywebsite-svc
+      kubectl apply -f pod.yml
+      kubectl apply -f ser.yml
